@@ -30,17 +30,19 @@ async def add(ctx, left: int, right: int):
     await ctx.send(left + right)
 
 @bot.command()
-async def sab(ctx):
+async def sab(ctx, *argv):
     f = open("bosses/sab.json")
     data = json.load(f)
-    result = ""
     boss_mechanics = data["mechanics"]
+    time_limit = data["timeLimit"]
     for mechanic_data in boss_mechanics:
         print(mechanic_data)
-        mechanic = mechanics.from_json_data(mechanic_data)
-        result += mechanic.printMechanics()
+        mechanic = mechanics.from_json_data(mechanic_data, time_limit)
+        mechanics_map = mechanic.get_time_to_message_dict(argv)
+        for result in mechanics_map:
+            print(result, mechanics_map[result])
     f.close()
-    await ctx.send(result)
+    await ctx.send("test")
 
 
 def unique_languages_from_voices(voices):

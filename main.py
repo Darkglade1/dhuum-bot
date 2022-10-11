@@ -4,6 +4,8 @@ import discord
 from discord.ext import commands
 import google.cloud.texttospeech as tts
 import os
+import mechanics
+import json
 
 description = '''An example bot to showcase the discord.ext.commands extension
 module.
@@ -26,6 +28,19 @@ async def on_ready():
 async def add(ctx, left: int, right: int):
     """Adds two numbers together."""
     await ctx.send(left + right)
+
+@bot.command()
+async def sab(ctx):
+    f = open("bosses/sab.json")
+    data = json.load(f)
+    result = ""
+    boss_mechanics = data["mechanics"]
+    for mechanic_data in boss_mechanics:
+        print(mechanic_data)
+        mechanic = mechanics.from_json_data(mechanic_data)
+        result += mechanic.printMechanics()
+    f.close()
+    await ctx.send(result)
 
 
 def unique_languages_from_voices(voices):

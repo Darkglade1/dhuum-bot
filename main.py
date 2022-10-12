@@ -86,6 +86,10 @@ def text_to_wav(text):
     response = client.synthesize_speech(
         input=text_input, voice=voice_params, audio_config=audio_config
     )
+    try:
+        os.mkdir("audio/")
+    except OSError:
+        pass
     with open(filename, "wb") as out:
         out.write(response.audio_content)
         print(f'Generated speech saved to "{filename}"')

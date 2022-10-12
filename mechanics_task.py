@@ -21,7 +21,7 @@ class MechanicTask:
     def stop_mechanics(self):
         self.check_mechanics.cancel()
 
-    @tasks.loop(seconds=5.0)
+    @tasks.loop(seconds=1.0)
     async def check_mechanics(self):
         if len(self.total_list) > 0:
             passed_time = time.time() - self.start_time

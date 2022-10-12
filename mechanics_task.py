@@ -14,6 +14,7 @@ class MechanicTask:
     def start_mechanics(self):
         global ready_message
         self.say(ready_message)
+        time.sleep(2)  # 2 seconds is how long it takes for the bot to say the ready message
         self.start_time = time.time()
         self.check_mechanics.start()
 

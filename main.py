@@ -23,7 +23,6 @@ task = mechanics_task.MechanicTask(None, None)
 async def on_ready():
     print(f'Logged in as {bot.user} (ID: {bot.user.id})')
     print('------')
-    text_to_wav(mechanics_task.ready_message)
 
 
 @bot.command()
@@ -40,25 +39,15 @@ async def leave(ctx):
 
 
 @bot.command()
-async def sab(ctx, *argv):
-    f = open("bosses/sab.json")
+async def start(ctx, boss, *argv):
+    filename = f"bosses/{boss}.json"
+    f = open(filename)
     data = json.load(f)
     total_list = parse_mechanics(data, *argv)
     f.close()
     global task
     task = mechanics_task.MechanicTask(ctx, total_list)
-    await task.start_mechanics()
-
-
-@bot.command()
-async def dhuum(ctx, *argv):
-    f = open("bosses/dhuum.json")
-    data = json.load(f)
-    total_list = parse_mechanics(data, *argv)
-    f.close()
-    global task
-    task = mechanics_task.MechanicTask(ctx, total_list)
-    await task.start_mechanics()
+    task.start_mechanics()
 
 
 @bot.command()
@@ -68,6 +57,7 @@ async def stop(ctx):
 
 
 def parse_mechanics(data, *argv):
+    text_to_wav(mechanics_task.ready_message)
     boss_mechanics = data["mechanics"]
     time_limit = data["timeLimit"]
     total_list = []

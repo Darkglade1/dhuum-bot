@@ -16,12 +16,27 @@ intents.message_content = True
 
 bot = commands.Bot(command_prefix='!', description=description, intents=intents)
 
-task = mechanics_task.MechanicTask(None)
+task = mechanics_task.MechanicTask(None, None)
+
 
 @bot.event
 async def on_ready():
     print(f'Logged in as {bot.user} (ID: {bot.user.id})')
     print('------')
+    text_to_wav(mechanics_task.ready_message)
+
+
+@bot.command()
+async def join(ctx):
+    channel = ctx.author.voice.channel
+    if ctx.voice_client is not None:
+        return await ctx.voice_client.move_to(channel)
+    await channel.connect()
+
+
+@bot.command()
+async def leave(ctx):
+    await ctx. voice_client.disconnect()
 
 
 @bot.command()
@@ -31,8 +46,8 @@ async def sab(ctx, *argv):
     total_list = parse_mechanics(data, *argv)
     f.close()
     global task
-    task = mechanics_task.MechanicTask(total_list)
-    await task.start_mechanics(ctx)
+    task = mechanics_task.MechanicTask(ctx, total_list)
+    await task.start_mechanics()
 
 
 @bot.command()
@@ -42,8 +57,8 @@ async def dhuum(ctx, *argv):
     total_list = parse_mechanics(data, *argv)
     f.close()
     global task
-    task = mechanics_task.MechanicTask(total_list)
-    await task.start_mechanics(ctx)
+    task = mechanics_task.MechanicTask(ctx, total_list)
+    await task.start_mechanics()
 
 
 @bot.command()

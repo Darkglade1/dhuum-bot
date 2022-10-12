@@ -91,8 +91,8 @@ def text_to_wav(text):
         print(f'Generated speech saved to "{filename}"')
 
 
-filename = "token.json"
-f = open(filename)
-data = json.load(f)
-token = data["token"]
+token_file = "token.json"
+token_file = open(token_file)
+token_data = json.load(token_file)
+token = token_data["token"]
 bot.run(token)

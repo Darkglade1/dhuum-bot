@@ -3,18 +3,18 @@
     {
       "startTime": 30,
       "interval": 30,
-      "playersInvolved": 2,
+      "playersInvolved": true,
       "mechanicNames": [
-        "south",
-        "west",
-        "north",
-        "east",
-        "south",
-        "north",
-        "west",
-        "east"
+        "arrow",
+        "circle",
+        "heart",
+        "square",
+        "arrow",
+        "heart",
+        "circle",
+        "square"
       ],
-      "warnTime": 5
+      "warnTime": 1
     }
   ],
   "timeLimit": 540

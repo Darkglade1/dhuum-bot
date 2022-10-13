@@ -14,7 +14,7 @@ THERE IS NO CONCLUSION MORE NATURAL THAN MISSING MECHANICS BECAUSE YOU WEREN'T L
 intents = discord.Intents.default()
 intents.message_content = True
 
-bot = commands.Bot(command_prefix='!', description=description, intents=intents)
+bot = commands.Bot(command_prefix='?', description=description, intents=intents)
 
 task = mechanics_task.MechanicTask(None, None)
 
@@ -75,8 +75,8 @@ def text_to_wav(text):
     if os.path.isfile(filename):
         return
     os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = "key.json"
-    language_code = "en-US"
-    voice_name = "en-US-Standard-G"
+    language_code = "en-GB"
+    voice_name = "en-GB-Neural2-D"
     text_input = tts.SynthesisInput(text=text)
     voice_params = tts.VoiceSelectionParams(
         language_code=language_code, name=voice_name

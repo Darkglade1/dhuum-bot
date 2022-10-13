@@ -13,7 +13,7 @@
         "swirl",
         "triangle"
       ],
-      "warnTime": 10
+      "warnTime": 8
     },
     {
       "startTime": 210,
@@ -22,16 +22,25 @@
       "mechanicNames": [
         "hold bombs"
       ],
-      "warnTime": 5
+      "warnTime": 2
+    },
+     {
+      "startTime": 175,
+      "interval": 80,
+      "playersInvolved": false,
+      "mechanicNames": [
+        "death mark"
+      ],
+	  "warnTime": 3
     },
     {
-      "startTime": 210,
+      "startTime": 215,
       "interval": 80,
       "playersInvolved": false,
       "mechanicNames": [
         "soul split"
       ],
-       "warnTime": 0
+      "warnTime": 7
     }
   ],
   "timeLimit": 600

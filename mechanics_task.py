@@ -29,13 +29,18 @@ class MechanicTask:
                 mechanic = mechanics_list[0]
                 print(mechanic)
                 if passed_time >= mechanic[0]:
-                    self.say(mechanic[1])
-                    del mechanics_list[0]
+                    succeeded = self.say(mechanic[1])
+                    if succeeded:
+                        del mechanics_list[0]
                 if len(mechanics_list) == 0:
                     self.total_list.remove(mechanics_list)
 
     def say(self, message):
         filename = f"audio/{message}.wav"
         source = discord.PCMVolumeTransformer(discord.FFmpegPCMAudio(executable="C:/ffmpeg/bin/ffmpeg.exe", source=filename))
-        self.ctx.voice_client.play(source)
+        try:
+            self.ctx.voice_client.play(source)
+            return True
+        except discord.ClientException:
+            return False
 

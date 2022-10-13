@@ -14,7 +14,7 @@ THERE IS NO CONCLUSION MORE NATURAL THAN MISSING MECHANICS BECAUSE YOU WEREN'T L
 intents = discord.Intents.default()
 intents.message_content = True
 
-bot = commands.Bot(command_prefix='?', description=description, intents=intents)
+bot = commands.Bot(command_prefix='!', description=description, intents=intents)
 
 task = mechanics_task.MechanicTask(None, None)
 

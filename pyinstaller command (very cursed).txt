@@ -1,0 +1,1 @@
+pyinstaller -F main.py --add-data="files\libopus-0.x64.dll;files"

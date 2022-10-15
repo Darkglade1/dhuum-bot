@@ -38,6 +38,11 @@ class MechanicTask:
         filename = f"audio/{message}.wav"
         source = discord.PCMVolumeTransformer(discord.FFmpegPCMAudio(executable="C:/ffmpeg/bin/ffmpeg.exe", source=filename))
         try:
+            if not discord.opus.is_loaded():
+                import sys
+                if getattr(sys, 'frozen', True):
+                    filename = "files/libopus-0.x64.dll"
+                discord.opus.load_opus(filename)
             self.ctx.voice_client.play(source)
             return True
         except discord.ClientException:

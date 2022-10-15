@@ -1,0 +1,21 @@
+{
+  "mechanics": [
+    {
+      "startTime": 50,
+      "interval": 50,
+      "playersInvolved": true,
+      "mechanicNames": [
+        "circle",
+        "heart",
+        "square",
+        "arrow",
+        "circle",
+        "heart",
+		"square",
+		"arrow"
+      ],
+      "warnTime": 1
+    }
+  ],
+  "timeLimit": 420
+}

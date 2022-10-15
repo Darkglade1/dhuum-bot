@@ -35,13 +35,17 @@ async def join(ctx):
 
 @bot.command()
 async def leave(ctx):
-    await ctx. voice_client.disconnect()
+    await ctx.voice_client.disconnect()
 
 
 @bot.command()
 async def start(ctx, boss, *argv):
     filename = f"bosses/{boss}.json"
-    f = open(filename)
+    try:
+        f = open(filename)
+    except FileNotFoundError:
+        await ctx.send("FOOLISH MORTAL! EVEN I CANNOT SPEAK OF THAT WHICH DOES NOT EXIST!")
+        return
     data = json.load(f)
     total_list = parse_mechanics(data, *argv)
     f.close()
@@ -64,6 +68,7 @@ def parse_mechanics(data, *argv):
     for mechanic_data in boss_mechanics:
         mechanic = mechanics.from_json_data(mechanic_data, time_limit)
         mechanics_list = mechanic.get_time_to_message_list(argv)
+        print(mechanics_list)
         total_list.append(mechanics_list)
         for result in mechanics_list:
             text_to_wav(result[1])

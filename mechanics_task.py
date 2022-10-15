@@ -27,7 +27,6 @@ class MechanicTask:
             passed_time = time.time() - self.start_time
             for mechanics_list in self.total_list:
                 mechanic = mechanics_list[0]
-                print(mechanic)
                 if passed_time >= mechanic[0]:
                     succeeded = self.say(mechanic[1])
                     if succeeded:

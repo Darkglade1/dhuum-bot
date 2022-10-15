@@ -1,0 +1,48 @@
+{
+  "mechanics": [
+	{
+      "startTime": 130,
+      "interval": 120,
+      "playersInvolved": true,
+      "playerList":["Berg", "Zane", "Narella"],
+      "mechanicNames": [
+        "arrow",
+        "circle",
+        "heart",
+        "square",
+        "star",
+        "swirl",
+        "triangle"
+      ],
+	  "warnTime": 4
+    },
+	{
+      "startTime": 177,
+      "interval": 600,
+      "playersInvolved": false,
+      "mechanicNames": [
+        "saboteur incoming"
+      ],
+	  "warnTime": 5
+	},
+	{
+      "startTime": 330,
+      "interval": 30,
+      "playersInvolved": false,
+      "mechanicNames": [
+        "saboteur incoming"
+      ],
+	  "warnTime": 5
+	},
+	{
+      "startTime": 235,
+      "interval": 60,
+      "playersInvolved": false,
+      "mechanicNames": [
+        "mortars"
+      ],
+      "warnTime": 18
+    }
+  ],
+  "timeLimit": 540
+}

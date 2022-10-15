@@ -2,6 +2,10 @@
 def from_json_data(json_data, time_limit):
     mechanic = Mechanic(json_data["interval"], json_data["playersInvolved"], json_data["mechanicNames"],
                         json_data["warnTime"], json_data["startTime"], time_limit)
+    if "playerList" in json_data:
+        mechanic.player_list = json_data["playerList"]
+    if "overrideFirstMechanicAssignment" in json_data:
+        mechanic.override_first_mechanics_list = json_data["overrideFirstMechanicAssignment"]
     return mechanic
 
 
@@ -13,6 +17,8 @@ class Mechanic:
         self.warn_time = warn_time
         self.start_time = start_time
         self.end_time = end_time
+        self.player_list = None
+        self.override_first_mechanics_list = None
 
     def get_time_to_message_list(self, player_names):
         time_to_message_list = []
@@ -28,7 +34,15 @@ class Mechanic:
     def get_message(self, index, player_names):
         mechanic_name = self.mechanic_names[index % len(self.mechanic_names)]
         if self.players_involved:
-            player_name = player_names[index % len(player_names)]
+            if len(player_names) > 0:
+                list_to_use = player_names
+            else:
+                list_to_use = self.player_list
+            player_name = list_to_use[index % len(list_to_use)]
+            if self.override_first_mechanics_list and len(self.override_first_mechanics_list) > 0:
+                if mechanic_name in self.override_first_mechanics_list:
+                    player_name = self.override_first_mechanics_list[mechanic_name]
+                    del self.override_first_mechanics_list[mechanic_name]
             player_name = player_name.lower()
             player_name = player_name.strip()
             result = "{player} on {mechanic}"

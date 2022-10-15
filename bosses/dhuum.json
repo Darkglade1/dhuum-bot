@@ -4,6 +4,10 @@
       "startTime": 30,
       "interval": 30,
       "playersInvolved": true,
+      "playerList": ["Wood", "Pip", "Bob"],
+      "overrideFirstMechanicAssignment": {
+        "circle": "Kate"
+      },
       "mechanicNames": [
         "arrow",
         "circle",
